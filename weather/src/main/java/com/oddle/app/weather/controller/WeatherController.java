@@ -40,9 +40,9 @@ public class WeatherController {
         return Collections.singletonMap("message", "the id already deleted : " + weatherService.deleteByID(id));
     }
 
-    @PutMapping("/update")
-    public Map<String, Object> putWeathers(CurrentWeather currentWeather) {
-         return Collections.singletonMap("message", "the id already updated : " + weatherService.update(currentWeather));
+    @PutMapping("/{id}")
+    public Map<String, Object> putWeathers(@PathVariable String id) {
+         return Collections.singletonMap("message", "the id already updated : " + weatherService.update(id));
     }
 
 }

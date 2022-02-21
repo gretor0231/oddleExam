@@ -12,7 +12,7 @@ public interface WeatherService {
 
     List<CurrentWeather> findAllWeather();// find past periods weather data
 
-    Boolean update(CurrentWeather currentWeather);// update past period weather data
+    Boolean update(String id);// update past period weather data
 
     Boolean deleteByID(String id);// delete past period weather data
 

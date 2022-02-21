@@ -8,6 +8,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class WeatherServiceImpl implements WeatherService{
 
@@ -57,11 +59,14 @@ public class WeatherServiceImpl implements WeatherService{
     }
 
     @Override
-    public Boolean update(CurrentWeather currentWeather) {
-        if(!weatherRepository.findById(currentWeather.getId()).isPresent()){
+    public Boolean update(String id) {
+        if(!weatherRepository.findById(Long.valueOf(id)).isPresent()){
             return false;
         }
-        weatherRepository.save(currentWeather);
+        Optional<CurrentWeather> currentWeather = weatherRepository.findById(Long.valueOf(id));
+        String cityName = currentWeather.get().getCityName();
+        deleteByID(id);
+        save(cityName);
         return true;
     }
     @Override
