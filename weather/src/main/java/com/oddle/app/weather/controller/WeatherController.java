@@ -23,7 +23,7 @@ public class WeatherController {
     @GetMapping("/{cityName}")
     public Map<String, Object> getWeathers(@PathVariable String cityName)  {
         CurrentWeather currentWeather = weatherService.findByCity(cityName);
-        return Collections.singletonMap("message", "the weather of " + cityName +" is : " + currentWeather);
+        return Collections.singletonMap("message", "the weather of " + cityName +" is : " + currentWeather.toString());
     }
     @GetMapping("/list")
     public Map<String, Object> getAllWeathers() {

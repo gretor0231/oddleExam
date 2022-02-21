@@ -1,13 +1,13 @@
 package com.oddle.app.weather.services;
 
-import com.github.tsohr.JSONArray;
-import com.github.tsohr.JSONObject;
 import com.oddle.app.weather.Repository.WeatherRepository;
 import com.oddle.app.weather.model.CurrentWeather;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
+import java.util.List;
+@Service
 public class WeatherServiceImpl implements WeatherService{
 
     private WeatherRepository weatherRepository;
@@ -17,31 +17,29 @@ public class WeatherServiceImpl implements WeatherService{
         this.weatherRepository = weatherRepository;
     }
 
+
+
     @Override
     public CurrentWeather findByCity(String cityName) {
-        String websiteResponse = "http://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&mode=json&appid="+"ccf308f3c554535b877a44c77cf27e64"+"&units=metric";
+        String websiteResponse = "http://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&appid="+"ccf308f3c554535b877a44c77cf27e64";
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(websiteResponse, String.class);
-        String description = null;
-        String temp;
-        String feelsLike;
-        String windSpeed;
+//        System.out.println("the result is :" + result);
+        String description = "description";
+        String temp = "temp";
+        String feelsLike = "feels_like";
+        String windSpeed = "speed";
         CurrentWeather currentWeather = new CurrentWeather();
-        JSONObject root = new JSONObject(Boolean.parseBoolean(result));
-        JSONArray weatherObject = root.getJSONArray("weather");
-        for (int i = 0; i < weatherObject.length(); i++) {
-            JSONObject elementInArray = weatherObject.getJSONObject(i);
-            description = elementInArray.getString("description");
-        }
-        JSONObject main = root.getJSONObject("main");
-        temp = String.valueOf(main.getFloat("temp"));
-        feelsLike = String.valueOf(main.getFloat("feelsLike"));
-        windSpeed = String.valueOf(main.getFloat("windSpeed"));
-        currentWeather.setCityName(cityName);
+        description = getString(result,description,3);
+        temp = getString(result,temp,2);
+        feelsLike = getString(result, feelsLike,2);
+        windSpeed = getString(result, windSpeed,2);
+
         currentWeather.setDescription(description);
         currentWeather.setTemperature(temp);
-        currentWeather.setFeelsLike(feelsLike);
+        currentWeather.setCityName(cityName);
         currentWeather.setWindSpeed(windSpeed);
+        currentWeather.setFeelsLike(feelsLike);
         return currentWeather;
     }
     @Override
@@ -70,5 +68,22 @@ public class WeatherServiceImpl implements WeatherService{
         }
         weatherRepository.deleteById(Long.valueOf(id));
         return true;
+    }
+
+    private String getString(String result, String input, Integer number){
+        int inputIndex = result.indexOf(input) + input.length() + number;
+        String subString = result.substring(inputIndex);
+        for (int i = 0; i < subString.length(); i++) {
+            if(subString.charAt(i) == ',') {
+                subString = subString.substring(0,i);
+                input = subString;
+                break;
+            }else if(subString.charAt(i) == '"') {
+                subString = subString.substring(0,i);
+                input = subString;
+                break;
+            }
+        }
+        return input;
     }
 }

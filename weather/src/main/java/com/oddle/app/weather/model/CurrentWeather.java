@@ -80,4 +80,17 @@ public class CurrentWeather implements Serializable {
     public void setWindSpeed(String windSpeed) {
         this.windSpeed = windSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "CurrentWeather{" +
+                "id=" + id +
+                ", savingTime=" + savingTime +
+                ", description='" + description + '\'' +
+                ", temperature='" + temperature + '\'' +
+                ", feelsLike='" + feelsLike + '\'' +
+                ", windSpeed='" + windSpeed + '\'' +
+                ", cityName='" + cityName + '\'' +
+                '}';
+    }
 }

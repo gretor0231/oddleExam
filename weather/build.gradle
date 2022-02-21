@@ -19,7 +19,6 @@ dependencies {
 	implementation 'io.github.privettoli:vertx-json-value-mapper:0.0.1'
 	implementation 'com.yashoid:jsonparsable:1.0.4'
 	implementation 'fr.myprysm.vertx:vertx-json:0.1.3'
-	implementation 'com.github.droidpl:android-json-viewer:1.0'
 	implementation 'org.glassfish:jsonp-jaxrs-1x:1.1.6'
 	implementation 'top.jfunc.common:converter:1.8.0'
 	implementation 'com.doodeec.utils:serverCommunicator:1.3.6'
