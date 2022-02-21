@@ -2,7 +2,7 @@ package com.oddle.app.weather.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Weather")
@@ -11,19 +11,18 @@ public class CurrentWeather implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-
-    private LocalTime savingTime;// we use local time now
+    @Column(name="cityName")
+    private String cityName;
     @Column(name="description")
     private String description;
     @Column(name="temperature")
     private String temperature;
+    @Column(name="savingTime")
+    private LocalDateTime savingTime;// we use local time now
     @Column(name="feelsLike")
     private String feelsLike;
     @Column(name="windSpeed")
     private String windSpeed;
-    @Column(name="cityName")
-    private String cityName;
 
     public Long getId() {
         return id;
@@ -41,12 +40,12 @@ public class CurrentWeather implements Serializable {
         this.cityName = cityName;
     }
 
-    public LocalTime getSavingTime() {
+    public LocalDateTime getSavingTime() {
         return savingTime;
     }
 
-    public void setSavingTime() {
-        this.savingTime = LocalTime.now();
+    public void setSavingTime(LocalDateTime savingTime) {
+        this.savingTime = savingTime;
     }
 
     public String getDescription() {

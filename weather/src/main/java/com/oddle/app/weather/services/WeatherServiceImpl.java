@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class WeatherServiceImpl implements WeatherService{
@@ -45,6 +46,8 @@ public class WeatherServiceImpl implements WeatherService{
     @Override
     public void save(String cityName) {
         CurrentWeather currentWeather = findByCity(cityName);
+        LocalDateTime savingTime = LocalDateTime.now();
+        currentWeather.setSavingTime(savingTime);
         weatherRepository.save(currentWeather);
     }
 

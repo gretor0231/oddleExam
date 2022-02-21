@@ -1,18 +1,6 @@
 
-CREATE TABLE `Weather` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(45) DEFAULT NULL,
-  `temperature` varchar(45) DEFAULT NULL,
-  `feelsLike` varchar(45) DEFAULT NULL,
-  `windSpeed` varchar(45) DEFAULT NULL,
-  `savingTime` varchar(45) DEFAULT NULL,
-  `cityName` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-
-INSERT INTO `Weather` VALUES 
-	(1,'clear sky','277.3','273.42','5','16:21:03.502311',"Shanghai"),
-	(2,'broken clouds','283.33','282.68','3.13','16:27:48.437862','taipei');
-	
+INSERT INTO `weather` VALUES
+          (1,'Shanghai','clear sky','277.3','2022-02-21 16:31:45','273.42','5'),
+          (2,'taipei','broken clouds','283.33','2022-02-21 16:31:55','282.68','3.13');
