@@ -1,3 +1,10 @@
+# how to use?
+1.change the mysql user and password
+2.it will create the weather table when the server start it
+3.insert some data from .sql file to mysql database(optional)
+4.use weather API, please see the comments in the controller.
+
+
 # Oddle Backend Challenge - V2
 
 **Welcome to Oddle Challenge**

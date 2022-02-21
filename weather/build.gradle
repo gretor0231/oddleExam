@@ -15,6 +15,16 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.github.tsohr:json:0.0.2'
+	implementation 'io.github.privettoli:vertx-json-value-mapper:0.0.1'
+	implementation 'com.yashoid:jsonparsable:1.0.4'
+	implementation 'fr.myprysm.vertx:vertx-json:0.1.3'
+	implementation 'org.glassfish:jsonp-jaxrs-1x:1.1.6'
+	implementation 'top.jfunc.common:converter:1.8.0'
+	implementation 'com.doodeec.utils:serverCommunicator:1.3.6'
+	implementation 'top.jfunc.common:network-converter:1.8.1'
+	implementation 'top.jfunc.network:httpclient-converter:1.0'
+	implementation 'fr.myprysm.vertx:vertx-validation:0.1.3'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly 'mysql:mysql-connector-java'
 }
